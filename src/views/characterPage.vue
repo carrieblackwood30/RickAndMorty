@@ -7,7 +7,7 @@
                 </RouterLink>
             </div>
             
-            <div class="flex gap-8 mt-8 text-xl text-bold items-center">
+            <div class="flex gap-8 mt-8 text-xl text-bold items-center flex-wrap">
                 <img :src="character.image" alt="">
                 <div>
                     <h3 class="text-gray-600 text-2xl">name: </h3>
