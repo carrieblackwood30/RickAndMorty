@@ -7,8 +7,6 @@
                 </RouterLink>
             </div>
 
-            {{ console.log(location) }}
-
             <div>
                 <h3 class="text-2xl">name: </h3>
                 <p>{{ location.name }}</p>
@@ -19,10 +17,25 @@
                 <h3 class="text-2xl">type: </h3>
                 <p>{{ location.type }}</p>
 
-                <h3>residents: </h3>
-                <h3 v-for="resident in location.residents">
-                    {{ resident }}
-                </h3>
+                <h3 class="text-2xl">residents: </h3>
+                <button
+                    v-if="!buttonToggle"
+                    class="bg-slate-500 text-white px-2 py-0.5"
+                    @click="getResidents(location)"
+                    >show</button>
+                <button
+                    class="bg-slate-500 text-white px-2 py-0.5"
+                    v-if="buttonToggle"
+                    @click="buttonToggle = false; residents = []"
+                    >hide</button>
+                
+                <div class="flex flex-wrap gap-4 ">
+                    <div v-for="resident in residents" class="flex border gap-2 justify-start items-center w-[200px]">
+                        <img :src="resident.image" alt="" width="50">
+                        <h3>{{ resident.name }}</h3>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -30,9 +43,22 @@
 
 <script setup>
     import { useLocationStore } from '@/stores/location'; 
-    import { onBeforeMount } from 'vue';
+    import axios from 'axios';
+    import { onBeforeMount, ref } from 'vue';
 
     const store = useLocationStore()
+    const residents = ref([])
+    const buttonToggle = ref(false)
+
+    function getResidents(location){
+        buttonToggle.value = true
+        location.residents.map(resident =>{
+            axios.get(resident)
+            .then(res =>{
+                residents.value.push(res.data)
+            })
+        })
+    }
 
     onBeforeMount(() =>{
         store.locationInit()
