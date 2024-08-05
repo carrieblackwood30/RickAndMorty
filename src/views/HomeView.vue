@@ -5,7 +5,7 @@
         v-show="character.id >= startPoint && character.id <= finishPoint"
         :to="`/characterPage/${character.name}`" 
           >
-        <div class="border transition-all duration-300 p-1 flex gap-2 flex-col items-center w-[240px] h-[280px] mx-4 hover:scale-110">
+        <div class="border transition-all duration-300 p-1 flex gap-2 w-[120px] lg:w-[240px] flex-col items-center  lg:h-[280px] m-4 hover:scale-110">
           <img :src="character.image" :alt="character.name">
           <h3 class="text-xl text-bold">{{ character.name }}</h3>
         </div>
