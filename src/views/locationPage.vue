@@ -28,9 +28,11 @@
                     v-if="buttonToggle"
                     @click="buttonToggle = false; residents = []"
                     >hide</button>
-                
-                <div class="flex flex-wrap gap-4 ">
-                    <div v-for="resident in residents" class="flex border gap-2 justify-start items-center w-[200px]">
+
+                <div class="flex flex-wrap gap-4">
+                    <div v-for="resident in residents" 
+                        class="flex border gap-2 justify-start items-center w-[200px]"
+                        >
                         <img :src="resident.image" alt="" width="50">
                         <h3>{{ resident.name }}</h3>
                     </div>

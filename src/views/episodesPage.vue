@@ -1,5 +1,5 @@
 <template>
-    <div v-for="episode in store.episodes">
+    <div v-for="episode in store.episodes[0]">
         <div class=" m-8"  v-if="episode.name === $route.params.id">
             <div class="bg-gray-900 w-fit px-2 my-2 text-white">
                 <RouterLink to="/">
